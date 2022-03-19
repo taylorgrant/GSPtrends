@@ -1,12 +1,14 @@
 Package: GSPtrends
-Title: What the Package Does (One Line, Title Case)
+Title: Utility functions for querying and processing Google Trends data
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Taylor", "Grant", , "taylor_grant@gspsf.com", role = c("aut", "cre"))
+Description: Queries and processes Google Trends data. Plots raw, moving average and z-score transformations of data. Time series decompositions of data and more...
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)
+LazyData: true
