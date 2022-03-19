@@ -1,1 +1,1 @@
-utils::globalVariables(c("categories", "id", "hits", "keyword"))
+utils::globalVariables(c("categories", "id", "hits", "keyword", "ma"))
