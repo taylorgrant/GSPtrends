@@ -8,6 +8,7 @@
 #' @return Data frame of correlation data
 #' @export
 #' @importFrom stats median
+#' @import ggplot2
 #'
 #' @examples
 #' \dontrun{
@@ -45,9 +46,9 @@ gtr_corr <- function(tbl, directory) {
                                "y" = "y")) %>%
     dplyr::mutate(txt_col = ifelse(r < med_r, "a", "b"))
 
-  p1 <- ggplot2::ggplot(data = corr_gr_out, aes(x = x, y = y, fill = r, label = rstar)) +
+  p1 <- ggplot2::ggplot(data = corr_gr_out, ggplot2::aes(x = x, y = y, fill = r, label = rstar)) +
     ggplot2::geom_tile(color = "white") +
-    ggplot2::geom_text(aes(col = txt_col), show.legend = FALSE) +
+    ggplot2::geom_text(ggplot2::aes(col = txt_col), show.legend = FALSE) +
     ggplot2::scale_color_manual(values = c("a" = "white","b" = "black")) +
     viridis::scale_fill_viridis(option="E",
                                 name = NULL,
