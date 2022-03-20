@@ -11,8 +11,7 @@
 #' @examples
 #' cat_search("audio")
 cat_search <- function(term) {
-  data("categories", envir = environment())
   categories %>%
-    dplyr::filter(stringr::str_detect(term, stringr::fixed(term, ignore_case = TRUE))) %>%
+    dplyr::filter(stringr::str_detect(name, stringr::fixed(term, ignore_case = TRUE))) %>%
     dplyr::distinct(id, .keep_all = TRUE)
 }
