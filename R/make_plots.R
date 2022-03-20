@@ -57,7 +57,7 @@ make_plots <- function(tbl, var, directory, args) {
     p_line <- tbl %>%
       dplyr::filter(ma == ma_agg) %>%
       dplyr::mutate(ifelse(stringr::str_detect(keyword, "[[:upper:]]"), keyword, stringr::str_to_title(keyword))) %>%
-      ggplot2::ggplot( aes(x = date, y = !!quo_var, group = keyword, color = keyword)) +
+      ggplot2::ggplot(ggplot2::aes(x = date, y = !!quo_var, group = keyword, color = keyword)) +
       ggplot2::geom_line(size = .8) +
       ggplot2::scale_color_manual(values = pal, name = NULL) +
       ggplot2::theme(legend.position = "right") +
@@ -73,7 +73,7 @@ make_plots <- function(tbl, var, directory, args) {
     p_area <- tbl %>%
       dplyr::filter(ma == ma_agg) %>%
       dplyr::mutate(ifelse(stringr::str_detect(keyword, "[[:upper:]]"), keyword, stringr::str_to_title(keyword))) %>%
-      ggplot2::ggplot(aes(x = date, y = !!quo_var, group = keyword, fill = keyword)) +
+      ggplot2::ggplot(ggplot2::aes(x = date, y = !!quo_var, group = keyword, fill = keyword)) +
       ggplot2::geom_area(stat = "identity",
                          color = 'white',
                          size = .1,
