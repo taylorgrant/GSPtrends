@@ -26,7 +26,7 @@ make_ind_plot <- function(tbl, args, directory) {
     p1 <- tbl %>%
       dplyr::filter(keyword == key) %>%
       dplyr::filter(ma == "ma5") %>%
-      ggplot2::ggplot(aes(x = date, y = hits)) +
+      ggplot2::ggplot(ggplot2::aes(x = date, y = hits)) +
       ggplot2::geom_line(alpha = .5) +
       ggplot2::scale_x_datetime(date_breaks = "12 months",
                        date_labels = "%b %y") +
