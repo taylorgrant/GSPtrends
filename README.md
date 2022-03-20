@@ -19,15 +19,21 @@ of the function.
 When the data is returned, the package then creates a series of graphs
 for the user in a selected directory.
 
-Graphs include: - Raw search interest (stacked area and line plots) -
-Share of search if multiple terms were used (stacked area and line
-plots) - Moving averages of each (MA3, 5, 7, 13) - Z-scores of the
-rolling raw data to demonstrate changes in search behavior for each term
-- Correlations between each series are presented in a heatmap
+Graphs include:
 
-If more than 3 years of data is returned: - Time series decomposition of
-each series (via STL decomposition) - Individual series graphed with the
-seasonal adjustment of each series
+-   Raw search interest (stacked area and line plots)
+-   Share of search if multiple terms were used (stacked area and line
+    plots)
+-   Moving averages of each (MA3, 5, 7, 13)
+-   Z-scores of the rolling raw data to demonstrate changes in search
+    behavior for each term
+-   Correlations between each series are presented in a heatmap
+
+If more than 3 years of data is returned:
+
+-   Time series decomposition of each series (via STL decomposition)
+-   Individual series graphed with the seasonal adjustment of each
+    series
 
 ## Data
 
