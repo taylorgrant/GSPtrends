@@ -13,10 +13,25 @@ URL: https://github.com/taylorgrant/GSPtrends
 BugReports: https://github.com/taylorgrant/GSPtrends/issues
 Imports: 
     dplyr,
+    DT,
+    fabletools,
+    feasts,
+    ggplot2,
     glue,
     gtrendsR,
     lubridate,
+    plotly,
+    scales,
     shiny,
     shinydashboard,
-    shinysky,
-    stringr
+    shinysky (>= 0.1.3),
+    shinyWidgets,
+    slider,
+    stringr,
+    tidyr,
+    tsibble
+Remotes: 
+    AnalytixWare/ShinySky
+Depends: 
+    R (>= 2.10)
+LazyData: true
