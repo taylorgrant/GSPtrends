@@ -117,6 +117,16 @@ ts_decomposition <- function(tbl, term) {
                                                 '<sup>',
                                                 'Higher (lower) values indicate stronger (weaker) trend/seasonality',
                                                 '</sup>')))
+  } else {
+    set.seed(1234)
+    df <- data.frame(x = rnorm(20), y = rnorm(20, 1,.5))
+    p1 <- ggplot2::ggplot(df, ggplot2::aes(x,y)) +
+      ggplot2::geom_blank() +ggplot2::theme_void() +
+      ggplot2::annotate('text', x = 0, y = 1,
+                        label = "Data must be over 3 years for a decomposition...")
+
+    p2 <- p1
+    p3 <- p1
   }
 
   list(tsp1 = p1,

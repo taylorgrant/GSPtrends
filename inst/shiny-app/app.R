@@ -324,8 +324,8 @@ server = function(input, output, session) {
 
     # get data from Google Trends
     rv$data <- get_trends(arg_list)
-    gt <<- rv$data
-    # rv$data <- readRDS("~/Desktop/last5year.rds") |>
+    # gt <<- rv$data
+    # rv$data <- readRDS("~/Desktop/90day_auto.rds") |>
     #   dplyr::mutate(date = as.Date(date))
 
     # raw table output (wide format)
@@ -383,7 +383,7 @@ server = function(input, output, session) {
   })
 
 
-# TAB 2 -------------------------------------------------------------------
+  # TAB 2 -------------------------------------------------------------------
 
   # MA sliders
   output$maSlider1 <- shiny::renderUI({
@@ -470,6 +470,12 @@ server = function(input, output, session) {
     single_keyword_smooth(rv$data, input$solo_keyword, input$slider2)
   )
 
+  # get range of data
+  data_range <- shiny::reactive({
+    range(rv$data$date)
+  })
+
+  # TS decomposition plots
   output$tsPlot1 <- plotly::renderPlotly(
     ts_decomposition(rv$data, input$solo_keyword)$tsp1
   )
@@ -500,6 +506,17 @@ server = function(input, output, session) {
                               )
                             ))
   })
+
+
+  # TAB 4 - CORRELATIONS ----------------------------------------------------
+
+  # d <- gt |>
+  #   dplyr::select(date, hits, keyword) |>
+  #   tidyr::pivot_wider(names_from = keyword,
+  #               values_from = hits)
+  #
+  # forecast::ggCcf(diff(d$seattle), diff(d$portland))
+  # forecast::Ccf(d$seattle, d$`los angeles`)
 
 }
 

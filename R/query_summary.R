@@ -48,7 +48,7 @@ query_summary <- function(tbl) {
     dplyr::mutate(keyword = stringr::str_to_title(keyword)) |>
     ggplot2::ggplot(ggplot2::aes(x = date, y = hits, group = keyword, color = keyword,
                                  text = glue::glue("Date: {date}\nKeyword: {keyword}\nHits: {hits}"))) +
-    ggplot2::geom_line(size = .8) +
+    ggplot2::geom_line() +
     ggplot2::scale_color_manual(values = line_pal,
                                 name = NULL) +
     theme_xf() +
