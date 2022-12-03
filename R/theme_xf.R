@@ -1,18 +1,18 @@
-#' Theme
+#' Theme for ggplot
 #'
-#' @param base_family family
-#' @param base_size font size
-#' @param plot_title_family title family
+#' @param base_family Font family
+#' @param base_size base size
+#' @param plot_title_family title font family
 #' @param plot_title_size title size
 #' @param plot_title_face title face
 #' @param plot_title_margin title margin
 #' @param subtitle_family subtitle family
 #' @param subtitle_size subtitle size
-#' @param subtitle_face face
-#' @param subtitle_margin margin
-#' @param strip_text_family family
-#' @param strip_text_size size
-#' @param strip_text_face face
+#' @param subtitle_face subtitle face
+#' @param subtitle_margin subtitle margin
+#' @param strip_text_family strip text family
+#' @param strip_text_size strip text font size
+#' @param strip_text_face strip text font face
 #' @param caption_family family
 #' @param caption_size size
 #' @param caption_face face
@@ -29,7 +29,7 @@
 #' @param axis axis
 #' @param ticks ticks
 #'
-#' @return
+#' @return re-themed ggplot graph
 #' @export
 #'
 #' @examples

@@ -1,3 +1,16 @@
+#' Single term smoothed
+#'
+#' @param tbl Data frame with Google Trends data
+#' @param term Term to isolate
+#' @param ma Level of moving average
+#'
+#' @return graph with raw hits value and overlayed moving average line
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' single_keyword_smooth(tbl, "cats", ma = 7)
+#' }
 single_keyword_smooth <- function(tbl, term, ma) {
 
   # slider input
