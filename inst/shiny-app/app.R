@@ -17,108 +17,108 @@ convertMenuItem <- function(mi,tabName) {
 # showtext_auto()
 
 ## temp adding in theme
-theme_xf <- function(base_family="Open Sans", base_size = 11.5,
-                     plot_title_family=base_family, plot_title_size = 16,
-                     plot_title_face="plain", plot_title_margin = 4,
-                     subtitle_family="Open Sans", subtitle_size = 12,
-                     subtitle_face = "plain", subtitle_margin = 15,
-                     strip_text_family = base_family, strip_text_size = 12,
-                     strip_text_face = "plain",
-                     caption_family = "Open Sans", caption_size = 9,
-                     caption_face = "italic", caption_margin = 10,
-                     axis_title_family = base_family, axis_title_size = 13,
-                     axis_title_face = "plain", axis_title_just = "rt",
-                     plot_margin = ggplot2::margin(10,10,10,10),
-                     panel_spacing = ggplot2::unit(0.5, "lines"),
-                     grid_col = "#cccccc", grid = TRUE,
-                     axis_col = "#cccccc",axis = FALSE,
-                     ticks = FALSE) {
-
-  ret <- ggplot2::theme_minimal(base_family=base_family, base_size=base_size)
-
-  ret <- ret + ggplot2::theme(legend.background=ggplot2::element_blank())
-  ret <- ret + ggplot2::theme(legend.key=ggplot2::element_blank())
-
-  if (inherits(grid, "character") | grid == TRUE) {
-
-    ret <- ret + ggplot2::theme(panel.grid=ggplot2::element_line(color=grid_col, linewidth=0.10))
-    ret <- ret + ggplot2::theme(panel.grid.major=ggplot2::element_line(color=grid_col, linewidth=0.1))
-    ret <- ret + ggplot2::theme(panel.grid.minor=ggplot2::element_line(color=grid_col, linewidth=0.1))
-
-    if (inherits(grid, "character")) {
-      if (regexpr("X", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.x=ggplot2::element_blank())
-      if (regexpr("Y", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.y=ggplot2::element_blank())
-      if (regexpr("x", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.minor.x=ggplot2::element_blank())
-      if (regexpr("y", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.minor.y=ggplot2::element_blank())
-    }
-
-  } else {
-    ret <- ret + ggplot2::theme(panel.grid=ggplot2::element_blank())
-  }
-
-  if (inherits(axis, "character") | axis == TRUE) {
-    ret <- ret + ggplot2::theme(axis.line=ggplot2::element_line(color="#2b2b2b", linewidth=0.15))
-    if (inherits(axis, "character")) {
-      axis <- tolower(axis)
-      if (regexpr("x", axis)[1] < 0) {
-        ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_blank())
-      } else {
-        ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_line(color=axis_col, linewidth=0.15))
-      }
-      if (regexpr("y", axis)[1] < 0) {
-        ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_blank())
-      } else {
-        ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_line(color=axis_col, linewidth=0.15))
-      }
-    } else {
-      ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_line(color=axis_col, linewidth=0.15))
-      ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_line(color=axis_col, linewidth=0.15))
-    }
-  } else {
-    ret <- ret + ggplot2::theme(axis.line=ggplot2::element_blank())
-  }
-
-  if (!ticks) {
-    ret <- ret + ggplot2::theme(axis.ticks = ggplot2::element_blank())
-    ret <- ret + ggplot2::theme(axis.ticks.x = ggplot2::element_blank())
-    ret <- ret + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
-  } else {
-    ret <- ret + ggplot2::theme(axis.ticks = ggplot2::element_line(linewidth=0.15))
-    ret <- ret + ggplot2::theme(axis.ticks.x = ggplot2::element_line(linewidth=0.15))
-    ret <- ret + ggplot2::theme(axis.ticks.y = ggplot2::element_line(linewidth=0.15))
-    ret <- ret + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
-  }
-
-  xj <- switch(tolower(substr(axis_title_just, 1, 1)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
-  yj <- switch(tolower(substr(axis_title_just, 2, 2)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
-
-  ret <- ret + ggplot2::theme(axis.text.x=ggplot2::element_text(margin=ggplot2::margin(t=0)))
-  ret <- ret + ggplot2::theme(axis.text.y=ggplot2::element_text(margin=ggplot2::margin(r=0)))
-  ret <- ret + ggplot2::theme(axis.title=ggplot2::element_text(size=axis_title_size, family=axis_title_family))
-  ret <- ret + ggplot2::theme(axis.title.x=ggplot2::element_text(hjust=xj, size=axis_title_size,
-                                                                 family=axis_title_family, face=axis_title_face))
-  ret <- ret + ggplot2::theme(axis.title.y=ggplot2::element_text(hjust=yj, size=axis_title_size,
-                                                                 family=axis_title_family, face=axis_title_face))
-  ret <- ret + ggplot2::theme(strip.text=ggplot2::element_text(hjust=0, size=strip_text_size,
-                                                               face=strip_text_face, family=strip_text_family))
-  ret <- ret + ggplot2::theme(panel.spacing.x=grid::unit(.5, "lines"))
-  ret <- ret + ggplot2::theme(panel.spacing.y=grid::unit(.5, "lines"))
-  ret <- ret + ggplot2::theme(plot.title=ggplot2::element_text(hjust=0, size=plot_title_size,
-                                                               margin=ggplot2::margin(b=plot_title_margin),
-                                                               family=plot_title_family, face=plot_title_face))
-  ret <- ret + ggplot2::theme(plot.subtitle=ggplot2::element_text(hjust=0, size=subtitle_size,
-                                                                  margin=ggplot2::margin(b=subtitle_margin),
-                                                                  family=subtitle_family, face=subtitle_face))
-  ret <- ret + ggplot2::theme(plot.caption=ggplot2::element_text(hjust=1, size=caption_size,
-                                                                 margin=ggplot2::margin(t=caption_margin),
-                                                                 family=caption_family, face=caption_face))
-  ret <- ret + ggplot2::theme(plot.margin=plot_margin)
-
-  ret <-  ret + ggplot2::theme(panel.spacing=panel_spacing)
-
-  ret
-
-}
+# theme_xf <- function(base_family="Open Sans", base_size = 11.5,
+#                      plot_title_family=base_family, plot_title_size = 16,
+#                      plot_title_face="plain", plot_title_margin = 4,
+#                      subtitle_family="Open Sans", subtitle_size = 12,
+#                      subtitle_face = "plain", subtitle_margin = 15,
+#                      strip_text_family = base_family, strip_text_size = 12,
+#                      strip_text_face = "plain",
+#                      caption_family = "Open Sans", caption_size = 9,
+#                      caption_face = "italic", caption_margin = 10,
+#                      axis_title_family = base_family, axis_title_size = 13,
+#                      axis_title_face = "plain", axis_title_just = "rt",
+#                      plot_margin = ggplot2::margin(10,10,10,10),
+#                      panel_spacing = ggplot2::unit(0.5, "lines"),
+#                      grid_col = "#cccccc", grid = TRUE,
+#                      axis_col = "#cccccc",axis = FALSE,
+#                      ticks = FALSE) {
+#
+#   ret <- ggplot2::theme_minimal(base_family=base_family, base_size=base_size)
+#
+#   ret <- ret + ggplot2::theme(legend.background=ggplot2::element_blank())
+#   ret <- ret + ggplot2::theme(legend.key=ggplot2::element_blank())
+#
+#   if (inherits(grid, "character") | grid == TRUE) {
+#
+#     ret <- ret + ggplot2::theme(panel.grid=ggplot2::element_line(color=grid_col, linewidth=0.10))
+#     ret <- ret + ggplot2::theme(panel.grid.major=ggplot2::element_line(color=grid_col, linewidth=0.1))
+#     ret <- ret + ggplot2::theme(panel.grid.minor=ggplot2::element_line(color=grid_col, linewidth=0.1))
+#
+#     if (inherits(grid, "character")) {
+#       if (regexpr("X", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.x=ggplot2::element_blank())
+#       if (regexpr("Y", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.major.y=ggplot2::element_blank())
+#       if (regexpr("x", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.minor.x=ggplot2::element_blank())
+#       if (regexpr("y", grid)[1] < 0) ret <- ret + ggplot2::theme(panel.grid.minor.y=ggplot2::element_blank())
+#     }
+#
+#   } else {
+#     ret <- ret + ggplot2::theme(panel.grid=ggplot2::element_blank())
+#   }
+#
+#   if (inherits(axis, "character") | axis == TRUE) {
+#     ret <- ret + ggplot2::theme(axis.line=ggplot2::element_line(color="#2b2b2b", linewidth=0.15))
+#     if (inherits(axis, "character")) {
+#       axis <- tolower(axis)
+#       if (regexpr("x", axis)[1] < 0) {
+#         ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_blank())
+#       } else {
+#         ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_line(color=axis_col, linewidth=0.15))
+#       }
+#       if (regexpr("y", axis)[1] < 0) {
+#         ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_blank())
+#       } else {
+#         ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_line(color=axis_col, linewidth=0.15))
+#       }
+#     } else {
+#       ret <- ret + ggplot2::theme(axis.line.x=ggplot2::element_line(color=axis_col, linewidth=0.15))
+#       ret <- ret + ggplot2::theme(axis.line.y=ggplot2::element_line(color=axis_col, linewidth=0.15))
+#     }
+#   } else {
+#     ret <- ret + ggplot2::theme(axis.line=ggplot2::element_blank())
+#   }
+#
+#   if (!ticks) {
+#     ret <- ret + ggplot2::theme(axis.ticks = ggplot2::element_blank())
+#     ret <- ret + ggplot2::theme(axis.ticks.x = ggplot2::element_blank())
+#     ret <- ret + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
+#   } else {
+#     ret <- ret + ggplot2::theme(axis.ticks = ggplot2::element_line(linewidth=0.15))
+#     ret <- ret + ggplot2::theme(axis.ticks.x = ggplot2::element_line(linewidth=0.15))
+#     ret <- ret + ggplot2::theme(axis.ticks.y = ggplot2::element_line(linewidth=0.15))
+#     ret <- ret + ggplot2::theme(axis.ticks.length = grid::unit(5, "pt"))
+#   }
+#
+#   xj <- switch(tolower(substr(axis_title_just, 1, 1)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
+#   yj <- switch(tolower(substr(axis_title_just, 2, 2)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
+#
+#   ret <- ret + ggplot2::theme(axis.text.x=ggplot2::element_text(margin=ggplot2::margin(t=0)))
+#   ret <- ret + ggplot2::theme(axis.text.y=ggplot2::element_text(margin=ggplot2::margin(r=0)))
+#   ret <- ret + ggplot2::theme(axis.title=ggplot2::element_text(size=axis_title_size, family=axis_title_family))
+#   ret <- ret + ggplot2::theme(axis.title.x=ggplot2::element_text(hjust=xj, size=axis_title_size,
+#                                                                  family=axis_title_family, face=axis_title_face))
+#   ret <- ret + ggplot2::theme(axis.title.y=ggplot2::element_text(hjust=yj, size=axis_title_size,
+#                                                                  family=axis_title_family, face=axis_title_face))
+#   ret <- ret + ggplot2::theme(strip.text=ggplot2::element_text(hjust=0, size=strip_text_size,
+#                                                                face=strip_text_face, family=strip_text_family))
+#   ret <- ret + ggplot2::theme(panel.spacing.x=grid::unit(.5, "lines"))
+#   ret <- ret + ggplot2::theme(panel.spacing.y=grid::unit(.5, "lines"))
+#   ret <- ret + ggplot2::theme(plot.title=ggplot2::element_text(hjust=0, size=plot_title_size,
+#                                                                margin=ggplot2::margin(b=plot_title_margin),
+#                                                                family=plot_title_family, face=plot_title_face))
+#   ret <- ret + ggplot2::theme(plot.subtitle=ggplot2::element_text(hjust=0, size=subtitle_size,
+#                                                                   margin=ggplot2::margin(b=subtitle_margin),
+#                                                                   family=subtitle_family, face=subtitle_face))
+#   ret <- ret + ggplot2::theme(plot.caption=ggplot2::element_text(hjust=1, size=caption_size,
+#                                                                  margin=ggplot2::margin(t=caption_margin),
+#                                                                  family=caption_family, face=caption_face))
+#   ret <- ret + ggplot2::theme(plot.margin=plot_margin)
+#
+#   ret <-  ret + ggplot2::theme(panel.spacing=panel_spacing)
+#
+#   ret
+#
+# }
 
 
 # palettes ----------------------------------------------------------------
@@ -167,7 +167,12 @@ sidebar <- shinydashboard::dashboardSidebar(
                                shiny::uiOutput("soloKeyword"),
                                shiny::uiOutput("maSlider2")
 
-      ), "solo")
+      ), "solo"),
+    convertMenuItem(
+      shinydashboard::menuItem("About", tabName = "about",
+                               icon = shiny::icon("trowel"),
+                               selected=F
+      ), "about")
 
   )
 )
@@ -195,6 +200,8 @@ shinydashboard::tabItems(
   shinydashboard::tabItem("share", shiny::uiOutput("tab2"),
                           shinysky::busyIndicator(text = 'Please wait...', wait = 1500)),
   shinydashboard::tabItem("solo", shiny::uiOutput("tab3"),
+                          shinysky::busyIndicator(text = 'Please wait...', wait = 1500)),
+  shinydashboard::tabItem("about", shiny::uiOutput("tab4"),
                           shinysky::busyIndicator(text = 'Please wait...', wait = 1500))
 )
 )
@@ -229,6 +236,18 @@ server = function(input, output, session) {
   shiny::outputOptions(output, "maSlider1", suspendWhenHidden = FALSE)
   shiny::outputOptions(output, "palChoice", suspendWhenHidden = FALSE)
   # TAB 3 (Dynamic Render)
+
+
+  # Modal Window ------------------------------------------------------------
+  shiny::showModal(shiny::modalDialog(shiny::HTML("<b>What is this?</b> This is an interface to query Google Trends. This will take your search terms, retrieve
+                                                  the data, and help to visualize the results. All tables and graphs are downloadable and everything is interactive.
+                                                  <br><br><b>How do I use it?</b> Use the drop downs in the left rail under the tab, 'Trend Query'. Enter your terms
+                                                  in the text box - <b>separate each term with a comma</b>, select the geography of interest (within the US only for the time being),
+                                                  and specify your time frame, search type, and any specific category. Remember that different time frames return different
+                                                  time intervals between data points. See
+                                                  <a href='https://support.google.com/trends/?hl=en#topic=6248052' target='_blank'>here</a> for
+                                                  more information about Trends queries.<br><br>For more information about the results, see the <code>About</code> tab."),
+                                      easyClose = T))
 
   # Tab 1  ------------------------------------------------------------------
 
@@ -431,6 +450,9 @@ server = function(input, output, session) {
 
 
   output$tab2 <- shiny::renderUI({
+    shiny::validate(
+      shiny::need(nrow(rv$data) > 0, "Need data")
+    )
     shinydashboard::tabItem("share",
                             shiny::h4("Data Output & Graphs"),
                             value="test2",
@@ -486,13 +508,10 @@ server = function(input, output, session) {
     ts_decomposition(rv$data, input$solo_keyword)$tsp3
   )
 
-  # # correlations
-  # output$correlation_table <- DT::renderDT(
-  #   trend_correlation(rv$data)$corr_tbl
-  # )
-
-
   output$tab3 <- shiny::renderUI({
+    shiny::validate(
+      shiny::need(nrow(rv$data) > 0, "Need data")
+    )
     shinydashboard::tabItem("solo",
                             shiny::h4("Additional information"),
                             value="test3",
@@ -508,15 +527,50 @@ server = function(input, output, session) {
   })
 
 
-  # TAB 4 - CORRELATIONS ----------------------------------------------------
+  # TAB 4 - ABOUT ----------------------------------------------------
 
-  # d <- gt |>
-  #   dplyr::select(date, hits, keyword) |>
-  #   tidyr::pivot_wider(names_from = keyword,
-  #               values_from = hits)
-  #
-  # forecast::ggCcf(diff(d$seattle), diff(d$portland))
-  # forecast::Ccf(d$seattle, d$`los angeles`)
+  output$aboutInfo <- renderUI({
+      HTML("<b>Share of Search:</b><br>Les Binet has argued that Share of Search is predictive of a brand's market share
+           within its category. He has further argued that Google Trends data can be used as an accurate measure of consumer search
+           interest (see <a href='https://ipa.co.uk/effworks/effworksglobal-2020/share-of-search-as-a-predictive-measure' target='_blank'>here</a>
+           for more information).<br><br>Share of search is simply calculated as the percentage of the total search index
+           (e.g., Term A / (Term A + Term B + Term C)) for any point of time. While Google Trends only returns results for up to 5 terms,
+           and those indices returned are relative to the peak performer (whichever term earns the 100), we are able to increase the number of
+           allowable terms by ensuring that each search includes the peak performer. In so doing, the index results are consistent for each
+           term, regardless of what search group it was included in. This app is set up to allow up to 13 search terms.
+           <br><br>
+            <b>Change in Search:</b><br>The change in search is the simple z-score for each term's search interest.
+           Each term's index is first centered - the mean search interest is subtracted from the index value - and then
+           scaled - the centered value is divided by the standard deviation of of the term's search interest.<br><br>This
+           metric provides an easy way of understanding how consumer interest is changing over time. Values above (below) 0 indicate that
+           search interest is above (below) average.<br><br>
+           <b>Smoother:</b> Within the <code>Share of Search</code> tab, a moving average can be applied to the data. A
+           moving average is the estimate of the trend-cycle at time <em>t</em> and is obtained by averaging values of the time series within
+           <em>k</em> periods of <em>t</em>. Observations that are nearby in time are also likely to be close in value.
+           Therefore, the average eliminates some of the randomness in the data, leaving a smooth trend-cycle component. The
+           order of the moving average determines the smoothness of the trend-cycle estimate; a larger order means a smoother
+           curve.<br><br>
+           <b>Time Series Decomposition:</b> Within the <code>Single Keywords</code> tab are three tabs
+           (STL, Seasonally Adjusted, and Seasonal vs. Trend). STL stands for 'Seasonal and Trend decomposition using Loess.'
+           This is a statistical method of decomposing a time series data into 3 components containing seasonality,
+           trend and residual. Trend gives you a general direction of the overall data. Seasonality is a regular and predictable pattern
+           that recurs at a fixed interval of time. For example, searches for gym memberships routinely peak in January. Or
+           in a tighter time window, electricity consumption peaks at night. The residual in the STL plot is the random fluctuation
+           or unpredictable change in the series - once we take out the trend and seasonality, what is left to drive search interest.")
+  })
+
+  output$tab4 <- shiny::renderUI({
+    shinydashboard::tabItem("about",
+                            shiny::h4("ABout the results and graphs"),
+                            value="test4",
+                            shiny::fluidRow(
+                              shinydashboard::tabBox(
+                                width = 11,
+                                shiny::tabPanel("", shiny::uiOutput("aboutInfo"))
+                              )
+                            ))
+  })
+
 
 }
 
