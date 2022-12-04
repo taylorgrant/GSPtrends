@@ -236,8 +236,6 @@ server = function(input, output, session) {
     # get data from Google Trends
     rv$data <- get_trends(arg_list)
     # gt <<- rv$data
-    # rv$data <- readRDS("~/Desktop/90day_auto.rds") |>
-    #   dplyr::mutate(date = as.Date(date))
 
     # raw table output (wide format)
     output$raw_table <- DT::renderDT(
