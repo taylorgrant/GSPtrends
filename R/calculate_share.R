@@ -268,7 +268,8 @@ calculate_share <- function(tbl, ma, pal) {
           # searching = FALSE,
           dom = "Blftp",
           buttons = c('excel')),
-        caption = cap)
+        caption = cap),
+    server = FALSE
   }
 
   ma_raw_table <- tbl_out('ma_raw')
