@@ -273,7 +273,8 @@ server = function(input, output, session) {
             buttons = c('excel'),
             columnDefs = list(list(className = "dt-right", targets = c("ci")))),
           caption = glue::glue("Summary data: Timeframe - {arg_list$duration}; Category - {input$category}")
-        )
+        ),
+      server = FALSE
     )
 
     output$tab1 <- shiny::renderUI({
