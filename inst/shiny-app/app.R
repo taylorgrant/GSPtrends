@@ -322,13 +322,16 @@ server = function(input, output, session) {
   })
 
   output$maRawTable <- DT::renderDT(
-    share_data()$ma_raw_table
+    share_data()$ma_raw_table,
+    server = FALSE
   )
   output$maShareTable <- DT::renderDT(
-    share_data()$ma_share_table
+    share_data()$ma_share_table,
+    server = FALSE
   )
   output$zMATable <- DT::renderDT(
-    share_data()$zma_raw_table
+    share_data()$zma_raw_table,
+    server = FALSE
   )
   output$shareLine <- plotly::renderPlotly(
     share_data()$share_line
