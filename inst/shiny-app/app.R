@@ -249,7 +249,8 @@ server = function(input, output, session) {
             dom = "Blftp",
             buttons = c('excel')),
           caption = glue::glue("Timeframe: {arg_list$duration}; Category: {arg_list$category_name}")
-        )
+        ),
+      server = FALSE
     )
 
     # raw line plot
