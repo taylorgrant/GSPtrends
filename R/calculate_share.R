@@ -157,7 +157,8 @@ calculate_share <- function(tbl, ma, pal) {
     ggplot2::geom_area(stat = "identity",
                        color = 'white',
                        size = .1,
-                       alpha = .9) +
+                       alpha = .9,
+                       position = "fill") +
     ggplot2::scale_y_continuous(labels = scales::percent) +
     ggplot2::scale_fill_manual(values = pal1[seq.int(1, length(pal1), length.out = length(unique(out$keyword)))],
                                 name = NULL) +
